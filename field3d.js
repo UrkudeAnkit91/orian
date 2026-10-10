@@ -2,10 +2,15 @@
 (() => {
   const canvas = document.getElementById('field');
   if (!canvas) return;
-  const gl = canvas.getContext('webgl', { alpha: true, antialias: true, powerPreference: 'low-power' }) || canvas.getContext('experimental-webgl', { alpha: true });
-  if (!gl) return;
+  const coarse = window.matchMedia('(pointer:coarse)').matches || 'ontouchstart' in window;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = window.matchMedia('(pointer:fine)').matches;
+  if (coarse) {
+    canvas.width = 1; canvas.height = 1;
+    return;
+  }
+  const gl = canvas.getContext('webgl', { alpha: true, antialias: true, powerPreference: 'low-power' }) || canvas.getContext('experimental-webgl', { alpha: true });
+  if (!gl) return;
 
   const rand = (a, b) => a + Math.random() * (b - a);
 

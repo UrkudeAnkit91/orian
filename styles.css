@@ -686,3 +686,43 @@ main, .nav, .footer { position: relative; z-index: 2; }
   .ready .hero-inner > *, .ready .ltr { animation: none !important; }
   .hero-inner > *, .ltr { opacity: 1 !important; }
 }
+
+/* ══════════════════════════════════════════════════════════
+   POLISH — fonts, touch, a11y, honesty
+   ══════════════════════════════════════════════════════════ */
+
+/* self-hosted display font (no CDN) */
+@font-face {
+  font-family: "Orbitron";
+  font-style: normal;
+  font-weight: 700 800;
+  font-display: swap;
+  src: url("assets/fonts/orbitron-700.woff2") format("woff2");
+}
+.brand, .glitch, .stat strong { font-family: "Orbitron", var(--mono); }
+.brand svg { animation: brandSpin 5s linear infinite; transform-origin: 50% 50%; }
+@keyframes brandSpin { from { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } to { transform: rotate(-3deg); } }
+
+/* hero HUD — honest sim note */
+.hero-hud .hud-tag {
+  display: block; margin-top: 8px; padding-top: 8px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+  color: var(--dim); letter-spacing: .22em; font-size: 9.5px;
+}
+
+/* touch / tap feedback */
+.card:active { --ty: -2px; border-color: rgba(6, 182, 212, 0.65); }
+.btn:active, .mail:active { transform: scale(.965); }
+.stat:active { transform: translateY(-1px); background: rgba(59, 130, 246, 0.1); }
+
+/* keyboard focus */
+a:focus-visible, .btn:focus-visible, .mail:focus-visible {
+  outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 4px;
+}
+
+/* contact access note */
+.access-note { margin-top: 20px; font-family: var(--mono); font-size: 12.5px; color: var(--dim); letter-spacing: .04em; }
+.access-note a { color: var(--cyan); border-bottom: 1px dashed rgba(6,182,212,.5); }
+
+/* footer founder line */
+.footer .fline { color: var(--dim); letter-spacing: .08em; }

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /assets/og.html
+
+Sitemap: https://urkudeankit91.github.io/orian/sitemap.xml

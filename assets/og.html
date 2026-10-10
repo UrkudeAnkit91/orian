@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1200,height=630" />
+<title>ORIAN OG card</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background: #030303;
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .glow {
+    position: absolute; border-radius: 50%; filter: blur(70px); pointer-events: none;
+  }
+  .g1 { width: 560px; height: 400px; left: 60px; top: -60px;
+    background: radial-gradient(circle, rgba(6,182,212,.30), transparent 65%); }
+  .g2 { width: 620px; height: 440px; right: 40px; bottom: -110px;
+    background: radial-gradient(circle, rgba(168,85,247,.28), transparent 65%); }
+  .g3 { width: 480px; height: 340px; left: 40%; top: 40%;
+    background: radial-gradient(circle, rgba(59,130,246,.22), transparent 65%); }
+  .grid {
+    position: absolute; inset: 0; pointer-events: none; opacity: .5;
+    background-image:
+      linear-gradient(rgba(59,130,246,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,.07) 1px, transparent 1px);
+    background-size: 42px 42px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 45%, #000, transparent 78%);
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 45%, #000, transparent 78%);
+  }
+  .card {
+    position: relative; z-index: 2; text-align: center;
+    width: 920px; padding: 44px 0;
+  }
+  .mark { width: 88px; height: 88px; display: block; margin: 0 auto 30px;
+    filter: drop-shadow(0 0 26px rgba(59,130,246,.85)); }
+  h1 {
+    font-size: 96px; font-weight: 800; letter-spacing: 18px; margin-left: 18px; line-height: 1;
+    background: linear-gradient(180deg, #fff 15%, #cddfff 45%, #3b82f6 74%, #a855f7 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .sub {
+    margin-top: 26px;
+    font-size: 26px; letter-spacing: 9px; font-weight: 700;
+    background: linear-gradient(90deg, #3b82f6, #06b6d4);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .desc { margin-top: 22px; font-size: 19px; color: #93a1b8; letter-spacing: .4px; }
+  .meta {
+    margin-top: 36px; color: #5b6a82;
+    font-size: 15px; letter-spacing: 5px; text-transform: uppercase;
+  }
+  .meta b { color: #3b82f6; font-weight: 700; }
+  .meta i { font-style: normal; color: #06b6d4; }
+</style>
+</head>
+<body>
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <div class="glow g3"></div>
+  <div class="grid"></div>
+  <div class="card">
+    <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+      <polygon points="50,10 85,30 85,70 50,90 15,70 15,30" fill="none" stroke="#3b82f6" stroke-width="6"/>
+      <polygon points="50,22 78,37 78,63 50,78 22,63 22,37" fill="none" stroke="#06b6d4" stroke-width="3" opacity=".55"/>
+      <circle cx="50" cy="50" r="12" fill="#06b6d4"/>
+    </svg>
+    <h1>ORIAN</h1>
+    <div class="sub">LOCAL-FIRST NEURAL OS</div>
+    <div class="desc">Autonomous agents · voice control · trading engines · everything on-device</div>
+    <div class="meta"><b>60+</b> agents&nbsp;&nbsp;<i>5</i> backends&nbsp;&nbsp;<b>MT5</b> live&nbsp;&nbsp;0 bytes sold — ever</div>
+  </div>
+</body>
+</html>
