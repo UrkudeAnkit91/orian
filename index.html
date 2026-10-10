@@ -39,6 +39,8 @@
   </script>
 </head>
 <body>
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="aurora" aria-hidden="true"></div>
   <div class="bg-grid" aria-hidden="true"></div>
 
   <header class="nav" id="nav">
@@ -60,12 +62,12 @@
   <main>
     <!-- ── HERO ───────────────────────────── -->
     <section class="hero">
-      <canvas id="hero-canvas" aria-hidden="true"></canvas>
       <div class="hero-inner frame">
         <div class="badge"><span class="dot"></span> Neural OS · runs 100% on your machine</div>
         <h1><span class="glitch" data-text="ORIAN">ORIAN</span></h1>
         <p class="tagline">
-          An autonomous desktop intelligence that listens, reasons and executes —
+          An autonomous desktop intelligence that listens, reasons and
+          <span class="rotator" data-words="executes|trades|evolves|creates"></span> —
           <span class="grad">60+ agents</span>, local AI models and full system control,
           <span class="grad">all on-device</span>.
         </p>
@@ -73,20 +75,34 @@
           <a class="btn btn-primary" href="#features">Explore the System</a>
           <a class="btn btn-ghost" href="https://github.com/UrkudeAnkit91" target="_blank" rel="noopener">View on GitHub ↗</a>
         </div>
+        <div class="chips" aria-hidden="true">
+          <span class="chip chip-a"><b>MT5</b> · stream live</span>
+          <span class="chip chip-b"><b>OLLAMA</b> · qwen2.5:3b ready</span>
+          <span class="chip chip-c"><b>60+</b> agents online</span>
+          <span class="chip chip-d"><b>EARN</b> · rotation cycle</span>
+        </div>
         <div class="scroll-hint">Scroll<span></span></div>
       </div>
     </section>
 
     <!-- ── STATS ──────────────────────────── -->
-    <section class="stats" data-reveal>
+    <section class="stats" data-reveal data-plane>
       <div class="stat"><strong data-count="60" data-suffix="+">0</strong><span>Autonomous agents</span></div>
       <div class="stat"><strong data-count="100" data-suffix="%">0</strong><span>On-device data</span></div>
       <div class="stat"><strong data-count="50" data-suffix="+">0</strong><span>Engine endpoints</span></div>
       <div class="stat"><strong data-count="0" data-suffix="">0</strong><span>Bytes sold — ever</span></div>
     </section>
 
+    <!-- ── TICKER ─────────────────────────── -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span><b>60+</b> agents</span><span><em>5</em> AI backends</span><span><b>MT5</b> live</span><span><em>Gmail</em> synced</span><span><b>Vision</b> stream</span><span><em>Earn</em> engine</span><span><b>Qwen2.5</b> local</span><span><em>Self-healing</em></span>
+        <span><b>60+</b> agents</span><span><em>5</em> AI backends</span><span><b>MT5</b> live</span><span><em>Gmail</em> synced</span><span><b>Vision</b> stream</span><span><em>Earn</em> engine</span><span><b>Qwen2.5</b> local</span><span><em>Self-healing</em></span>
+      </div>
+    </div>
+
     <!-- ── FEATURES ───────────────────────── -->
-    <section id="features" class="features">
+    <section id="features" class="features" data-plane>
       <span class="sec-tag" data-reveal>Modules // 01</span>
       <h2 class="sec-h2" data-reveal>One system. Every capability.</h2>
       <p class="section-sub" data-reveal data-delay="1">
@@ -146,7 +162,7 @@
     </section>
 
     <!-- ── CORE DECK ──────────────────────── -->
-    <section id="core" class="core">
+    <section id="core" class="core" data-plane>
       <span class="sec-tag" data-reveal>Telemetry // 02</span>
       <h2 class="sec-h2" data-reveal>The console at the centre of everything.</h2>
       <p class="section-sub" data-reveal data-delay="1">
@@ -189,7 +205,7 @@
     </section>
 
     <!-- ── PRIVACY ────────────────────────── -->
-    <section id="privacy" class="privacy-strip">
+    <section id="privacy" class="privacy-strip" data-plane>
       <div class="privacy-inner" data-reveal>
         <span class="sec-tag">Data // 03</span>
         <h2 class="sec-h2">Your data never leaves your machine.</h2>
@@ -203,7 +219,7 @@
     </section>
 
     <!-- ── CONTACT ────────────────────────── -->
-    <section class="contact">
+    <section class="contact" data-plane>
       <span class="sec-tag" data-reveal>Channel // 04</span>
       <h2 class="sec-h2" data-reveal>Open a channel.</h2>
       <p data-reveal data-delay="1">Questions, feedback or policy enquiries:</p>
@@ -226,7 +242,8 @@
     </span>
   </footer>
 
-  <script src="neural3d.js" defer></script>
+  <script src="field3d.js" defer></script>
   <script src="app.js" defer></script>
+  <script src="motion.js" defer></script>
 </body>
 </html>
