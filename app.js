@@ -109,4 +109,20 @@
   // footer year
   const y = $('#year');
   if (y) y.textContent = new Date().getFullYear();
+
+  // hero entrance + headline letter split
+  document.body.classList.add('ready');
+  const gh = $('.glitch[data-text]');
+  if (gh && !reduce) {
+    const txt = gh.textContent.trim();
+    gh.setAttribute('aria-label', txt);
+    gh.textContent = '';
+    [...txt].forEach((ch, i) => {
+      const s = document.createElement('span');
+      s.className = 'ltr';
+      s.style.setProperty('--li', i);
+      s.textContent = ch === ' ' ? '\u00A0' : ch;
+      gh.appendChild(s);
+    });
+  }
 })();

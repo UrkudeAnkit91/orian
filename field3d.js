@@ -132,7 +132,7 @@
     }
   }
   const bRings = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, bRings);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(ringData), gl.STATIC_DRAW);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(ringData), gl.DYNAMIC_DRAW);
   const bRingCols = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, bRingCols);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(ringCols), gl.STATIC_DRAW);
 
@@ -278,7 +278,7 @@
   function frame(now) {
     const dt = Math.min(0.05, (now - t0) / 1000); t0 = now;
     if (!reduce) {
-      if (!dragging) rotY += dt * (0.1 + Math.abs(mouse.tx) * 0.12);
+      if (!dragging) rotY += dt * (0.16 + Math.abs(mouse.tx) * 0.18);
       rotVel *= 0.94;
       rotY += (tRotY - rotY) * 0.1 + rotVel;
       rotX += (tRotX - rotX) * 0.1;
@@ -302,6 +302,11 @@
     // rings + node edges (normal alpha)
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
     bindLn();
+    const br = 1 + Math.sin(now * 0.0014) * 0.045;
+    const ringNow = new Float32Array(ringData.length);
+    for (let i = 0; i < ringData.length; i++) ringNow[i] = ringData[i] * br;
+    gl.bindBuffer(gl.ARRAY_BUFFER, bRings);
+    gl.bufferData(gl.ARRAY_BUFFER, ringNow, gl.DYNAMIC_DRAW);
     drawLines(aLn, ringData.length / 3, bRings, bRingCols);
     drawLines(aLn, lineData.length / 3, bEdges, bEdgeCols);
 

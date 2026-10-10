@@ -60,23 +60,66 @@
 
   /* ---- 3D scroll planes ---- */
   const planes = $$('[data-plane]');
+  const par = $$('[data-parallax]');
   if (planes.length && fine && !reduce && matchMedia('(min-width: 821px)').matches) {
     const vh = () => innerHeight;
     let raf = false;
     const update = () => {
       raf = false;
+      const v = vh();
       for (const p of planes) {
         const r = p.getBoundingClientRect();
-        const c = r.top + r.height / 2 - vh() / 2;
-        const prog = Math.max(-1, Math.min(1, c / (vh() / 2)));
+        const c = r.top + r.height / 2 - v / 2;
+        const prog = Math.max(-1, Math.min(1, c / (v / 2)));
         const rot = prog * 4.5;
         p.style.transform = 'perspective(1300px) translateZ(' + (-Math.abs(prog) * 46).toFixed(1) + 'px) rotateX(' + rot.toFixed(2) + 'deg)';
+      }
+      for (const el of par) {
+        const r = el.getBoundingClientRect();
+        const c = r.top + r.height / 2 - v / 2;
+        if (Math.abs(c) > v * 0.95) continue;
+        const f = parseFloat(el.dataset.parallax || '0.3');
+        el.style.transform = 'translateY(' + (c * f).toFixed(1) + 'px)';
       }
     };
     const onScroll = () => { if (!raf) { raf = true; requestAnimationFrame(update); } };
     addEventListener('scroll', onScroll, { passive: true });
     addEventListener('resize', onScroll, { passive: true });
     update();
+  }
+
+  /* ---- multi-layer parallax (touch fallback) ---- */
+  if (par.length && (!fine || reduce)) {
+    const vh2 = () => innerHeight;
+    let raf2 = false;
+    const update2 = () => {
+      raf2 = false;
+      const v = vh2();
+      for (const el of par) {
+        const r = el.getBoundingClientRect();
+        const c = r.top + r.height / 2 - v / 2;
+        if (Math.abs(c) > v * 0.95) continue;
+        const f = parseFloat(el.dataset.parallax || '0.3');
+        el.style.transform = 'translateY(' + (c * f).toFixed(1) + 'px)';
+      }
+    };
+    const onS2 = () => { if (!raf2) { raf2 = true; requestAnimationFrame(update2); } };
+    addEventListener('scroll', onS2, { passive: true });
+    addEventListener('resize', onS2, { passive: true });
+  }
+
+  /* ---- live hero HUD readout ---- */
+  const hud = $('.hero-hud');
+  if (hud) {
+    const get = k => hud.querySelector('.' + k);
+    let tick = 2653.42;
+    setInterval(() => {
+      tick += (Math.random() - 0.48) * 3;
+      const sys = get('v-sys'); if (sys) sys.textContent = (Math.random() > 0.08 ? 'ONLINE' : 'SYNC');
+      const agt = get('v-agt'); if (agt) agt.textContent = 56 + (Math.random() * 5 | 0);
+      const tk = get('v-tick'); if (tk) tk.textContent = tick.toFixed(2);
+      const pg = get('v-ping'); if (pg) pg.textContent = 8 + (Math.random() * 30 | 0) + 'ms';
+    }, 1300);
   }
 
   /* ---- hero parallax ---- */
